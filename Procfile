@@ -1,1 +1,1 @@
-web: gunicorn maparustest.wsgi —-log-file -
+web: gunicorn maparustest.wsgi --log-file -

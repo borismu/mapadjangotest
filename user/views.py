@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from django.contrib.auth import login
+from django.contrib.auth import login, authenticate
 
 
 from .forms import SignUpForm
@@ -16,6 +16,8 @@ def register(request):
             user.refresh_from_db()
             user.profile.newsletter = form.cleaned_data.get('newsletter')
             user.save()
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=user.username, password=raw_password)
             login(request, user)
             return redirect('user:userinfo')
     else:
