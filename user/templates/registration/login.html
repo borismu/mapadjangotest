@@ -29,13 +29,13 @@
 </div>
 <form class="ui large form" style="text-align: left;" method="post">
     {% csrf_token %}
-    <div class="field">
+    <div class="field {% if form.username.errors %}error{% endif %}">
         <div class="ui left icon input">
             <i class="envelope icon"></i>
             <input type="text" name="username" placeholder="Email">
         </div>
     </div>
-    <div class="field">
+    <div class="field {% if form.password.errors %}error{% endif %}">
         <div class="ui left icon input">
             <i class="lock icon"></i>
             <input type="password" name="password" placeholder="Password">
