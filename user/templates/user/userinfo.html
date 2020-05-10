@@ -1,0 +1,41 @@
+{% extends 'user/base.html' %}
+
+{% block content %}
+<h2>User Info</h2>
+
+
+<div class="ui centered grid">
+    <div class="ui list" style="text-align: left;">
+        <div class="item">
+            <div class="header">Username</div>
+            <div class="description">{{user.username}}</div>
+        </div>
+        <div class="item">
+            <div class="header">Email</div>
+            <div class="description">{{user.email}}</div>
+        </div>
+        <div class="item">
+            <div class="header">Full Name</div>
+            <div class="description">{{user.first_name}} {{user.last_name}}</div>
+        </div>
+        <div class="item">
+            <div class="header">Subscribed to newsletter?</div>
+            <div class="description">{{user.profile.newsletter}}</div>
+        </div>
+    </div>
+
+    <div class="two column row">
+
+        <div class="six wide column" style="display: table; height:100%">
+            <p style="vertical-align: middle;display:table-cell">Time for logout?</p>
+        </div>
+
+        <div class="nine wide column">
+            <a class="ui fluid negative basic button" href="{% url 'user:logout' %}">
+                LOG OUT
+            </a>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

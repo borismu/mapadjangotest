@@ -1,0 +1,90 @@
+{% extends 'user/base.html' %}
+
+{% block content %}
+<h2>Sign up with</h2>
+<div class="ui centered grid">
+    <div class="three column row" style="vertical-align: middle;">
+
+        <div class="seven wide column" style="width:48% !important;padding:0 8px">
+            <a class="ui fluid button social fb" href="{% url 'social:begin' 'facebook' %}">
+                <i class="facebook f icon"></i>
+                FACEBOOK
+            </a>
+        </div>
+        <div style="display: table; height:100%">
+            <p style="vertical-align: middle;display:table-cell">/</p>
+        </div>
+
+        <div class="seven wide column" style="width:48% !important;padding:0 8px">
+            <a class="ui fluid button social google" href="{% url 'social:begin' 'google-oauth2' %}">
+                <i class="google icon"></i>
+                GOOGLE
+            </a>
+        </div>
+
+    </div>
+</div>
+<div class="ui horizontal divider">
+    or
+</div>
+<form class="ui large form" style="text-align: left;" method="post">
+    {% csrf_token %}
+    <div class="field">
+        <div class="ui left icon input">
+            <i class="user icon"></i>
+            <input type="text" name="first_name" placeholder="First Name" value="">
+        </div>
+    </div>
+    <div class="field">
+        <div class="ui left icon input">
+            <i class="user icon"></i>
+            <input type="text" name="last_name" placeholder="Last Name">
+        </div>
+    </div>
+    <div class="field">
+        <div class="ui left icon input">
+            <i class="envelope icon"></i>
+            <input type="text" name="email" placeholder="Email">
+        </div>
+    </div>
+    <div class="field">
+        <div class="ui left icon input">
+            <i class="lock icon"></i>
+            <input type="password" name="password1" placeholder="Password">
+        </div>
+    </div>
+    <div class="field">
+        <div class="ui left icon input">
+            <i class="lock icon"></i>
+            <input type="password" name="password2" placeholder="Confirm Password">
+        </div>
+    </div>
+    <div class="field">
+        <div class="ui checkbox">
+            <input type="checkbox" name="newsletter">
+            <label>I'd like to receive PlacePass news and offers</label>
+        </div>
+    </div>
+    <h5 class="ui grey header">By signing up, I agree to the PlacePass <a href="http://www.example.com"><span>Terms of
+                Service</span></a> and <a href="http://www.example.com"><span>Privacy Policy</span></a></h5>
+    <button class="ui fluid large teal submit button" type="submit">REGISTER</button>
+    <div class="ui error message">
+    </div>
+</form>
+
+<div class="ui centered grid">
+    <div class="two column row">
+
+        <div class="nine wide column" style="display: table; height:100%">
+            <p style="vertical-align: middle;display:table-cell">Already have an account?</p>
+        </div>
+
+        <div class="seven wide column">
+            <a class="ui fluid basic button" href="{% url 'user:login' %}">
+                LOG IN
+            </a>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
