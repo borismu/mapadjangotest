@@ -29,22 +29,33 @@
 </div>
 <form class="ui large form" style="text-align: left;" method="post">
     {% csrf_token %}
-    <div class="field">
+    {% if form.errors %}
+    <div class="ui error message">
+        <div class="header">Oops... Something went wrong</div>
+        {% for error in form.non_field_errors %}
+            <p>{{ error|escape }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+    <div class="field {% if form.first_name.errors %}error{% endif %}">
         <div class="ui left icon input">
             <i class="user icon"></i>
-            <input type="text" name="first_name" placeholder="First Name" value="">
+            <input type="text" name="first_name" placeholder="First Name" 
+            {% if form.first_name.value %} value="{{form.first_name.value}}" {% endif %}>
         </div>
     </div>
-    <div class="field">
+    <div class="field {% if form.last_name.errors %}error{% endif %}">
         <div class="ui left icon input">
             <i class="user icon"></i>
-            <input type="text" name="last_name" placeholder="Last Name">
+            <input type="text" name="last_name" placeholder="Last Name"
+            {% if form.last_name.value %} value="{{form.last_name.value}}" {% endif %}>
         </div>
     </div>
-    <div class="field">
+    <div class="field {% if form.email.errors %}error{% endif %}">
         <div class="ui left icon input">
             <i class="envelope icon"></i>
-            <input type="text" name="email" placeholder="Email">
+            <input type="text" name="email" placeholder="Email"
+            {% if form.email.value %} value="{{form.email.value}}" {% endif %}>
         </div>
     </div>
     <div class="field">
@@ -65,11 +76,9 @@
             <label for="newsletter-checkbox">I'd like to receive PlacePass news and offers</label>
         </div>
     </div>
-    <h5 class="ui grey header">By signing up, I agree to the PlacePass <a href="http://www.example.com"><span>Terms of
+    <h5 class="ui grey header" style="margin: 10px 0 5px;">By signing up, I agree to the PlacePass <a href="http://www.example.com"><span>Terms of
                 Service</span></a> and <a href="http://www.example.com"><span>Privacy Policy</span></a></h5>
     <button class="ui fluid large teal submit button" type="submit">REGISTER</button>
-    <div class="ui error message">
-    </div>
 </form>
 
 <div class="ui centered grid">

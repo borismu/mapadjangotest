@@ -28,3 +28,7 @@ a.social:not(:hover){
 a.social.fb{
     color: #4267B2;
 }
+
+.ui.form div.ui.error.message{
+    display: block;
+}

@@ -29,10 +29,18 @@
 </div>
 <form class="ui large form" style="text-align: left;" method="post">
     {% csrf_token %}
+    {% if form.errors %}
+    <div class="ui error message">
+        <div class="header">Oops... Something went wrong</div>
+        {% for error in form.non_field_errors %}
+            <p>{{ error|escape }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
     <div class="field {% if form.username.errors %}error{% endif %}">
         <div class="ui left icon input">
             <i class="envelope icon"></i>
-            <input type="text" name="username" placeholder="Email">
+            <input type="email" name="username" placeholder="Email"  {% if form.username.value %} value={{form.username.value}} {% endif %} >
         </div>
     </div>
     <div class="field {% if form.password.errors %}error{% endif %}">
@@ -42,7 +50,6 @@
         </div>
     </div>
     <button class="ui fluid large teal submit button" type="submit">LOG IN</button>
-    <div class="ui error message"></div>
 </form>
 <div class="ui centered grid">
     <div class="two column row">
